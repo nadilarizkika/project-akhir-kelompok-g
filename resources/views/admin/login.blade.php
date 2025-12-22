@@ -90,7 +90,7 @@
                                 type="email" 
                                 name="email"
                                 class="form-control" 
-                                placeholder="admin@simpatik.ac.id"
+                                placeholder="Masukkan Email"
                                 required
                             >
                         </div>
@@ -101,7 +101,7 @@
                                 type="password" 
                                 name="password"
                                 class="form-control" 
-                                placeholder="••••••••"
+                                placeholder="Masukkan Password"
                                 required
                             >
                         </div>

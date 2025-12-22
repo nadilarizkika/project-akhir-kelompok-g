@@ -1,19 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\AdminLoginController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login-admin', function () {
-    return view('admin.login');
-})->name('login.admin');
+// pengajuan
+Route::get('/pengajuan', [PengajuanController::class, 'create'])->name('pengajuan.create');
+Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
 
-Route::get('/pengajuan', function () {
-    return view('simpatik.pengajuan');
-})->name('pengajuan.create');
+// admin login
+Route::get('/admin/login', [AdminLoginController::class, 'showLogin'])->name('login.admin');
+Route::post('/admin/login', [AdminLoginController::class, 'login']);
+// routes/web.php
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
+    ->name('admin.logout');
 
-Route::get('/informasi', function () {
-    return view('simpatik.informasi');
-})->name('informasi');
+// dashboard admin
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+    ->name('admin.dashboard');
