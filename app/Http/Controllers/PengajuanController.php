@@ -7,15 +7,16 @@ use App\Models\Pengajuan;
 
 class PengajuanController extends Controller
 {
-// tampilkan form
+    // Menampilkan form pengajuan
     public function create()
     {
         return view('pengajuan.create');
     }
 
-// simpan pengajuan
+    // Menyimpan data pengajuan
     public function store(Request $request)
     {
+        // Validasi data dari form
         $request->validate([
             'nama_mahasiswa' => 'required',
             'nim' => 'required',
@@ -24,15 +25,16 @@ class PengajuanController extends Controller
             'alamat_instansi' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'surat_pengantar' => 'nullable|file|mimes:pdf|max:2048'
+            'surat_pengantar' => 'nullable|file|mimes:pdf|max:2048', // Validasi file PDF
         ]);
         
+        // Menyimpan file surat pengantar jika ada
         $filePath = null;
         if ($request->hasFile('surat_pengantar')) {
-            $filePath = $request->file('surat_pengantar')
-                                ->store('surat_pengantar', 'public');
+            $filePath = $request->file('surat_pengantar')->store('surat_pengantar', 'public'); // Menyimpan file
         }
         
+        // Menyimpan data pengajuan ke database
         Pengajuan::create([
             'nama_mahasiswa' => $request->nama_mahasiswa,
             'nim' => $request->nim,
@@ -44,11 +46,18 @@ class PengajuanController extends Controller
             'surat_pengantar' => $filePath,
         ]);
         
-        return redirect('/')
-            ->with('success', 'Pengajuan KP berhasil dikirim');
+        // Redirect dengan pesan sukses
+        return redirect()->route('pengajuan.create')->with('success', 'Pengajuan berhasil dikirim');
     }
 
-    // setujui
+    // Menampilkan daftar pengajuan (untuk admin)
+    public function index()
+    {
+        $pengajuan = Pengajuan::all(); // Ambil semua data pengajuan
+        return view('admin.pengajuan.index', compact('pengajuan')); // Kirim data ke view admin
+    }
+
+    // Menyetujui pengajuan
     public function approve($id)
     {
         Pengajuan::findOrFail($id)->update([
@@ -58,7 +67,7 @@ class PengajuanController extends Controller
         return back();
     }
 
-    // tolak
+    // Menolak pengajuan
     public function reject(Request $request, $id)
     {
         Pengajuan::findOrFail($id)->update([

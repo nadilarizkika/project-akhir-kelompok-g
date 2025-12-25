@@ -144,7 +144,7 @@
                     <div class="card card-stat shadow-sm">
                         <div class="card-body">
                             <h5>Total Pengajuan</h5>
-                            <h2 class="fw-bold">25</h2>
+                            <h2 class="fw-bold">{{ $total }}</h2>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="card card-stat shadow-sm">
                         <div class="card-body">
                             <h5>Menunggu Persetujuan</h5>
-                            <h2 class="fw-bold">10</h2>
+                            <h2 class="fw-bold">{{ $menunggu }}</h2>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                     <div class="card card-stat shadow-sm">
                         <div class="card-body">
                             <h5>Disetujui</h5>
-                            <h2 class="fw-bold">15</h2>
+                            <h2 class="fw-bold">{{ $disetujui }}</h2>
                         </div>
                     </div>
                 </div>
@@ -186,19 +186,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Ahmad Fauzi</td>
-                                <td>20210123</td>
-                                <td>Dinas Kominfo</td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">Menunggu</span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-success">Setujui</button>
-                                    <button class="btn btn-sm btn-danger">Tolak</button>
-                                </td>
-                            </tr>
+                            @foreach ($pengajuan as $index => $p)
+<tr>
+    <td>{{ $index + 1 }}</td>
+    <td>{{ $p->nama_mahasiswa }}</td>
+    <td>{{ $p->nim }}</td>
+    <td>{{ $p->instansi_tujuan }}</td>
+    <td>
+        <span class="badge bg-{{ $p->status == 'menunggu' ? 'warning' : ($p->status == 'disetujui' ? 'success' : 'danger') }}">
+            {{ ucfirst($p->status) }}
+        </span>
+    </td>
+    <td>
+        @if($p->status == 'menunggu')
+        <form action="{{ route('admin.pengajuan.approve', $p->id) }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+        </form>
+        <form action="{{ route('admin.pengajuan.reject', $p->id) }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+        </form>
+        @else
+        <span class="text-muted">Tidak bisa diubah</span>
+        @endif
+    </td>
+</tr>
+@endforeach
                         </tbody>
                     </table>
                 </div>

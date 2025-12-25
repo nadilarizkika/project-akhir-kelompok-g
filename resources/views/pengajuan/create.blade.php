@@ -87,47 +87,50 @@
                 </div>
 
                 <div class="card-body px-4 py-4">
-                    <form>
+                    <!-- Form sudah diperbaiki -->
+                    <form action="{{ route('pengajuan.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
                         <div class="mb-3">
                             <label class="form-label">Nama Mahasiswa</label>
-                            <input type="text" class="form-control" placeholder="Masukkan nama lengkap">
+                            <input type="text" class="form-control" name="nama_mahasiswa" placeholder="Masukkan nama lengkap" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">NIM</label>
-                            <input type="text" class="form-control" placeholder="Masukkan NIM">
+                            <input type="text" class="form-control" name="nim" placeholder="Masukkan NIM" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Program Studi</label>
-                            <input type="text" class="form-control" placeholder="Contoh: Sistem Informasi">
+                            <input type="text" class="form-control" name="program_studi" placeholder="Contoh: Sistem Informasi" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Instansi Tujuan KP</label>
-                            <input type="text" class="form-control" placeholder="Nama instansi/perusahaan">
+                            <input type="text" class="form-control" name="instansi_tujuan" placeholder="Nama instansi/perusahaan" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Alamat Instansi</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" name="alamat_instansi" rows="3" required></textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Tanggal Mulai KP</label>
-                                <input type="date" class="form-control">
+                                <input type="date" class="form-control" name="tanggal_mulai" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Tanggal Selesai KP</label>
-                                <input type="date" class="form-control">
+                                <input type="date" class="form-control" name="tanggal_selesai" required>
                             </div>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Surat Pengantar (PDF)</label>
-                            <input type="file" class="form-control">
+                            <input type="file" class="form-control" name="surat_pengantar" accept="application/pdf" required>
                         </div>
 
                         <div class="d-flex justify-content-end">
@@ -136,6 +139,7 @@
                             </button>
                         </div>
                     </form>
+                    <!-- End form -->
                 </div>
             </div>
 
