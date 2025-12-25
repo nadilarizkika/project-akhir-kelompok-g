@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Admin\AdminMahasiswaController;
+
+Route::prefix('admin')->group(function () {
+    Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])
+        ->name('admin.mahasiswa');
+});
 
 Route::get('/', function () {
     return view('welcome');
