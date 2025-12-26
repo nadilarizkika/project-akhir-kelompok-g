@@ -150,13 +150,22 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link fw-bold px-3" href="#informasi">Panduan</a></li>
                 <li class="nav-item"><a class="nav-link fw-bold px-3" href="#kontak">Kontak</a></li>
-                <li class="nav-item ms-lg-3">
-                    @if(Auth::guard('admin')->check())
-                        <a class="btn-auth-premium nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                    @else
-                        <a class="btn-auth-premium nav-link" href="{{ route('login.admin') }}">Login Admin</a>
-                    @endif
-                </li>
+               <li class="nav-item ms-lg-3">
+   @if(Auth::guard('admin')->check())
+    <a class="btn-auth-premium nav-link" href="{{ route('admin.dashboard') }}">
+        Dashboard
+    </a>
+@elseif(Auth::check())
+    <a class="btn-auth-premium nav-link" href="{{ route('mahasiswa.dashboard') }}">
+        Dashboard
+    </a>
+@else
+    <a class="btn-auth-premium nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Login
+    </a>
+@endif
+</li>
+
             </ul>
         </div>
     </div>
@@ -251,7 +260,34 @@
 </div>
 @endif
 
-</html><a href="{{ route('pengajuan.create') }}" class="btn-cta-main">
-    Mulai Pengajuan <i class="fa-solid fa-arrow-right"></i>
-</a>
+<!-- MODAL LOGIN -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow">
+
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold text-success">
+                    Login SIMPATIK
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center px-4 pb-4">
+                <!-- LOGIN MAHASISWA -->
+                <a href="{{ route('mahasiswa.login') }}"
+                   class="btn btn-success w-100 mb-3 py-3 fw-bold">
+                    Login sebagai Mahasiswa
+                </a>
+
+                <!-- LOGIN ADMIN -->
+                <a href="{{ route('login.admin') }}"
+                   class="btn btn-outline-success w-100 py-3 fw-bold">
+                    Login sebagai Admin
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>

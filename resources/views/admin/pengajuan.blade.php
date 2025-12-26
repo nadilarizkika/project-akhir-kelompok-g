@@ -166,14 +166,27 @@
                             </span>
                         </td>
                         <td class="text-end pe-3">
+                            @if ($item->status === 'menunggu')
                             <div class="d-flex gap-2 justify-content-end">
-                                <button onclick="updateStatus({{ $item->id }}, 'disetujui')" class="btn-action btn-success-action shadow-sm" title="Setujui">
+                                <button onclick="updateStatus({{ $item->id }}, 'disetujui')"
+                                    class="btn-action btn-success-action shadow-sm"
+                                    title="Setujui">
                                     <i class="fa-solid fa-check"></i>
                                 </button>
-                                <button onclick="updateStatus({{ $item->id }}, 'ditolak')" class="btn-action btn-danger-action shadow-sm" title="Tolak">
+                                
+                                <button onclick="updateStatus({{ $item->id }}, 'ditolak')"
+                                    class="btn-action btn-danger-action shadow-sm"
+                                    title="Tolak">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </div>
+                            
+                            @else
+                            <!-- STATUS FINAL → TIDAK ADA AKSI -->
+                            <span class="text-muted small fst-italic">
+                                Sudah diproses
+                            </span>
+                            @endif
                         </td>
                     </tr>
                     @empty
@@ -189,10 +202,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-/**
- * Logika Update Status dengan Alasan Penolakan
- */
 function updateStatus(id, status) {
+
+    // =========================
+    // JIKA DITOLAK
+    // =========================
     if (status === 'ditolak') {
         Swal.fire({
             title: 'Alasan Penolakan',
@@ -209,40 +223,68 @@ function updateStatus(id, status) {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                processUpdate(id, status, result.value);
+                processUpdate(id, status, result.value, null);
             }
         });
-    } else {
+
+    // =========================
+    // JIKA DISETUJUI
+    // =========================
+    } else if (status === 'disetujui') {
         Swal.fire({
-            title: 'Konfirmasi Persetujuan',
-            text: "Apakah dokumen mahasiswa ini sudah valid?",
+            title: 'Setujui Pengajuan KP',
+            html: `
+                <p class="mb-2">Upload <b>Surat Balasan / Persetujuan</b> (PDF)</p>
+                <input type="file" id="suratBalasan" class="swal2-input" accept=".pdf">
+                <small style="font-size:11px;color:#666">Wajib PDF • Maks 2MB</small>
+            `,
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#198754',
             confirmButtonText: 'Ya, Setujui',
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            preConfirm: () => {
+                const file = document.getElementById('suratBalasan').files[0];
+                if (!file) {
+                    Swal.showValidationMessage('Surat balasan wajib diupload!');
+                }
+                return file;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
-                processUpdate(id, status, null);
+                processUpdate(id, status, null, result.value);
             }
         });
     }
 }
 
 /**
- * Pengiriman Data AJAX
+ * =========================
+ * AJAX UPDATE STATUS
+ * =========================
  */
-function processUpdate(id, status, catatan) {
+function processUpdate(id, status, catatan, suratBalasan) {
+
+    let formData = new FormData();
+    formData.append('_token', "{{ csrf_token() }}");
+    formData.append('status', status);
+
+    if (catatan) {
+        formData.append('catatan', catatan);
+    }
+
+    if (suratBalasan) {
+        formData.append('surat_balasan', suratBalasan);
+    }
+
     $.ajax({
         url: `/admin/pengajuan/${id}/update-status`,
         type: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            status: status,
-            catatan: catatan 
-        },
+        data: formData,
+        processData: false,
+        contentType: false,
         success: function(response) {
-            if(response.success) {
+            if (response.success) {
                 Swal.fire({
                     title: 'Berhasil!',
                     text: response.message,
@@ -250,16 +292,21 @@ function processUpdate(id, status, catatan) {
                     timer: 1500,
                     showConfirmButton: false
                 }).then(() => {
-                    location.reload(); 
+                    location.reload();
                 });
             }
         },
         error: function() {
-            Swal.fire('Error!', 'Gagal memperbarui status. Pastikan Route POST sudah dikonfigurasi di web.php.', 'error');
+            Swal.fire(
+                'Gagal!',
+                'Gagal memperbarui status. Pastikan file PDF valid & route benar.',
+                'error'
+            );
         }
     });
 }
 </script>
+
 
 </body>
 </html>

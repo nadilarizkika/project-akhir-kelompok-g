@@ -152,25 +152,41 @@
                 </div>
                 
                 <div class="mb-2">
-                    <label class="form-label">Nama Mahasiswa</label>
-                    <input type="text" name="nama_mahasiswa" class="form-control" value="{{ old('nama_mahasiswa') }}" placeholder="Nama lengkap" required>
-                </div>
+    <label class="form-label">Nama Mahasiswa</label>
+    <input 
+        type="text"
+        class="form-control bg-light"
+        value="{{ Auth::user()->name }}"
+        readonly
+    >
+    <!-- hidden agar tetap terkirim -->
+    <input type="hidden" name="nama_mahasiswa" value="{{ Auth::user()->name }}">
+</div>
 
-                <div class="row g-2 mb-2">
-                    <div class="col-md-6">
-                        <label class="form-label">NIM</label>
-                        <input type="text" name="nim" class="form-control" value="{{ old('nim') }}" placeholder="NIM" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Program Studi</label>
-                        <select name="program_studi" class="form-select" required>
-                            <option value="" disabled selected>Pilih Jurusan</option>
-                            <option value="Sistem Informasi" {{ old('program_studi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
-                            <option value="Ilmu Komputer" {{ old('program_studi') == 'Ilmu Komputer' ? 'selected' : '' }}>Ilmu Komputer</option>
-                            <option value="Matematika" {{ old('program_studi') == 'Matematika' ? 'selected' : '' }}>Matematika</option>
-                        </select>
-                    </div>
-                </div>
+<div class="row g-2 mb-2">
+    <div class="col-md-6">
+        <label class="form-label">NIM</label>
+        <input 
+            type="text"
+            class="form-control bg-light"
+            value="{{ Auth::user()->nim }}"
+            readonly
+        >
+        <!-- hidden agar tetap terkirim -->
+        <input type="hidden" name="nim" value="{{ Auth::user()->nim }}">
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Program Studi</label>
+        <select name="program_studi" class="form-select" required>
+            <option value="" disabled selected>Pilih Jurusan</option>
+            <option value="Sistem Informasi">Sistem Informasi</option>
+            <option value="Ilmu Komputer">Ilmu Komputer</option>
+            <option value="Matematika">Matematika</option>
+        </select>
+    </div>
+</div>
+
 
                 <div class="section-divider">
                     <span class="section-label">Detail Instansi</span>

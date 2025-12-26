@@ -23,5 +23,6 @@ class Pengajuan extends Model
         'surat_pengantar',
         'status',
         'catatan_admin',
+        'surat_balasan',
     ];
 }

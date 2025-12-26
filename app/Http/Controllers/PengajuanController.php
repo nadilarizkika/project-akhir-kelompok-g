@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Pengajuan;
 
 class PengajuanController extends Controller
@@ -70,38 +71,34 @@ class PengajuanController extends Controller
      */
 
     // Fitur Responsif: Memperbarui status via AJAX (Tanpa Reload)
-    public function updateStatus(Request $request, $id)
-    {
-        // Mencari data pengajuan di database atau error 404 jika tidak ada
-        $pengajuan = Pengajuan::findOrFail($id); 
-        
-        // Memperbarui kolom status (disetujui/ditolak)
+
+public function updateStatus(Request $request, $id)
+{
+    $pengajuan = Pengajuan::findOrFail($id);
+
+    if ($request->status === 'disetujui') {
+        $request->validate([
+            'surat_balasan' => 'required|mimes:pdf|max:2048'
+        ]);
+
+        $path = $request->file('surat_balasan')
+                        ->store('surat_balasan', 'public');
+
         $pengajuan->update([
-            'status' => $request->status 
+            'status' => 'disetujui',
+            'surat_balasan' => $path,
+            'catatan_admin' => null
         ]);
-
-        // Mengembalikan respon JSON untuk ditangkap oleh AJAX di tampilan
-        return response()->json([
-            'success' => true,
-            'message' => 'Status pengajuan ' . $pengajuan->nama_mahasiswa . ' berhasil diperbarui!'
-        ]);
-    }
-
-    // Fungsi cadangan jika Admin ingin menyetujui secara manual (Halaman biasa)
-    public function approve($id)
-    {
-        Pengajuan::findOrFail($id)->update(['status' => 'disetujui']);
-        return back()->with('success', 'Pengajuan telah disetujui.');
-    }
-
-    // Fungsi cadangan jika Admin ingin menolak dengan menyertakan catatan khusus
-    public function reject(Request $request, $id)
-    {
-        Pengajuan::findOrFail($id)->update([
+    } else {
+        $pengajuan->update([
             'status' => 'ditolak',
-            'catatan_admin' => $request->catatan_admin
+            'catatan_admin' => $request->catatan
         ]);
-
-        return back()->with('error', 'Pengajuan telah ditolak.');
     }
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Status pengajuan diperbarui'
+    ]);
+}
 }
