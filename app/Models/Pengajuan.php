@@ -9,7 +9,8 @@ class Pengajuan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengajuan';
+    // Sesuaikan nama tabel dengan migration (tambah huruf 's')
+    protected $table = 'pengajuans'; 
 
     protected $fillable = [
         'nama_mahasiswa',

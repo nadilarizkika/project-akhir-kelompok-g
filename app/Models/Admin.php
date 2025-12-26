@@ -13,12 +13,16 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'name', 
+    'email', 
+    'password'
+];
 
-    protected $hidden = [
-        'password',
-    ];
+protected $casts = [
+    'email_verified_at' => 'datetime',
+    'password' => 'hashed', // BAGIAN INI SANGAT PENTING
+];
+
+    
 }
+
