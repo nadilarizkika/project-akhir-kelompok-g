@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('pengajuans', function (Blueprint $table) {
+            // Kita cek dulu apakah kolom sudah ada sebelum menambahkannya
+            if (!Schema::hasColumn('pengajuans', 'file_balasan')) {
+                $table->string('file_balasan')->nullable()->after('status');
+            }
+            
+            // Kolom ini yang menyebabkan error karena sudah ada
+            if (!Schema::hasColumn('pengajuans', 'catatan_admin')) {
+                $table->text('catatan_admin')->nullable()->after('file_balasan');
+            }
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('pengajuans', function (Blueprint $table) {
+            $table->dropColumn(['file_balasan', 'catatan_admin']);
+        });
+    }
+};

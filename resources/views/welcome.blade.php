@@ -3,141 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMPATIK — Sistem Informasi Kerja Praktik</title>
+    <title>SIMPATIK — Digital Portal UINSU</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
         :root {
-            --brand-dark: #052214;
-            --brand-primary: #0f5132;
-            --brand-accent: #198754;
-            --soft-bg: #fdfdfd;
-            --text-main: #1a1a1a;
+            --primary: #0f172a;
+            --emerald: #10b981;
+            --emerald-soft: #ecfdf5;
+            --slate: #64748b;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--soft-bg);
-            color: var(--text-main);
+            background-color: #ffffff;
+            color: var(--primary);
             overflow-x: hidden;
-            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* ================= NAVIGATION ================= */
         .navbar {
             padding: 25px 0;
-            transition: all 0.4s ease;
+            transition: 0.4s ease;
         }
 
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
             padding: 15px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .brand-text {
-            font-family: 'Bricolage Grotesque', sans-serif;
+        .navbar-brand {
             font-weight: 800;
-            font-size: 24px;
+            font-size: 1.5rem;
             letter-spacing: -1px;
-            color: var(--brand-dark);
-            text-decoration: none;
+            color: var(--primary) !important;
         }
 
-        .btn-auth-premium {
-            background: var(--brand-dark);
-            color: white !important;
-            border-radius: 50px;
-            padding: 10px 24px !important;
-            font-weight: 700;
-            font-size: 13px;
+        .nav-link {
+            font-weight: 600;
+            color: var(--primary) !important;
+            margin: 0 10px;
             transition: 0.3s;
         }
 
-        /* ================= HERO (CLEAN) ================= */
-        .hero {
-            padding: 140px 0 80px;
-            background: radial-gradient(circle at top right, rgba(25, 135, 84, 0.05), transparent);
+        .nav-link:hover {
+            color: var(--emerald) !important;
         }
 
-        .hero-h1 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        .btn-nav-premium {
+            background: var(--primary);
+            color: white !important;
+            border-radius: 14px;
+            padding: 10px 24px !important;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-nav-premium:hover {
+            background: var(--emerald);
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO SECTION (CLEAN) ================= */
+        .hero-section {
+            padding: 180px 0 120px;
+            background: radial-gradient(circle at 90% 10%, var(--emerald-soft), transparent 40%);
+            text-align: center;
+        }
+
+        .hero-title {
             font-weight: 800;
-            line-height: 1.1;
-            color: var(--brand-dark);
-            margin-bottom: 25px;
+            font-size: clamp(2.5rem, 7vw, 4.8rem);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin-bottom: 30px;
+            color: var(--primary);
         }
 
-        .btn-cta-main {
-            background: var(--brand-primary);
+        .hero-title span { 
+            color: var(--emerald); 
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--slate);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .btn-hero {
+            background: var(--primary);
             color: white;
-            padding: 18px 40px;
-            border-radius: 12px;
+            padding: 18px 45px;
+            border-radius: 18px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            transition: 0.3s;
+            transition: 0.4s;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
         }
 
-        .btn-cta-main:hover {
-            background: var(--brand-dark);
+        .btn-hero:hover {
+            background: var(--emerald);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.2);
         }
 
-        /* ================= KETERANGAN PENTING ================= */
-        .important-section {
-            background: #fff;
-            padding: 80px 0;
+        /* ================= BENTO GRID SECTION ================= */
+        .bento-grid {
+            padding: 100px 0;
+            background-color: #fcfcfc;
         }
 
-        .info-card {
-            border: 1px solid #f0f0f0;
-            border-radius: 20px;
-            padding: 35px;
+        .bento-card {
+            background: white;
+            border-radius: 35px;
+            padding: 45px;
             height: 100%;
-            transition: 0.3s;
+            border: 1px solid #f1f5f9;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .info-card:hover {
-            border-color: var(--brand-accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        .bento-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--emerald);
+            box-shadow: 0 40px 80px -15px rgba(0,0,0,0.05);
         }
 
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--brand-primary);
-            color: white;
-            border-radius: 10px;
+        .icon-wrap {
+            width: 65px; height: 65px;
+            background: var(--emerald-soft);
+            color: var(--emerald);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin-bottom: 30px;
         }
 
-        .warning-box {
-            background: #fff8f8;
-            border-left: 4px solid #dc3545;
+        /* ================= HELP SECTION (FOOTER AREA) ================= */
+        #bantuan {
+            padding: 80px 0;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        /* ================= MODAL LOGIN ================= */
+        .modal-content {
+            border-radius: 40px;
+            border: none;
             padding: 25px;
-            border-radius: 12px;
-            margin-top: 40px;
         }
 
-        /* ================= FOOTER ================= */
+        .login-btn-option {
+            padding: 22px;
+            border-radius: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .opt-mhs { background: var(--primary); color: white; }
+        .opt-adm { background: #f1f5f9; color: var(--primary); }
+
+        .opt-mhs:hover { background: var(--emerald); color: white; transform: scale(1.02); }
+        .opt-adm:hover { background: #e2e8f0; transform: scale(1.02); }
+
         footer {
             padding: 50px 0;
-            border-top: 1px solid #eee;
-            background: #fff;
+            color: var(--slate);
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -145,149 +195,125 @@
 
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container">
-        <a class="brand-text" href="#">SIMPATIK.</a>
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link fw-bold px-3" href="#informasi">Panduan</a></li>
-                <li class="nav-item"><a class="nav-link fw-bold px-3" href="#kontak">Kontak</a></li>
-               <li class="nav-item ms-lg-3">
-   @if(Auth::guard('admin')->check())
-    <a class="btn-auth-premium nav-link" href="{{ route('admin.dashboard') }}">
-        Dashboard
-    </a>
-@elseif(Auth::check())
-    <a class="btn-auth-premium nav-link" href="{{ route('mahasiswa.dashboard') }}">
-        Dashboard
-    </a>
-@else
-    <a class="btn-auth-premium nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-        Login
-    </a>
-@endif
-</li>
+        <a class="navbar-brand" href="/">SIMPATIK<span>.</span></a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <i class="fas fa-bars-staggered"></i>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#panduan">Panduan</a></li>
+                <li class="nav-item"><a class="nav-link" href="#bantuan">Bantuan</a></li>
+                <li class="nav-item ms-lg-4">
+                    @auth
+                        <a class="btn-nav-premium" href="{{ Auth::guard('admin')->check() ? route('admin.dashboard') : route('mahasiswa.dashboard') }}">Dashboard</a>
+                    @else
+                        <a class="btn-nav-premium" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Portal Masuk</a>
+                    @endauth
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<section class="hero text-center">
+<section class="hero-section">
     <div class="container">
-        <h1 class="hero-h1" data-aos="fade-up">Platform Digital <br> Kerja Praktik UINSU.</h1>
-        <p class="text-muted mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="100">
-            Kelola pengajuan Kerja Praktik Anda secara mandiri, transparan, dan efisien dalam satu pintu layanan digital.
+        <div data-aos="fade-up">
+            <h1 class="hero-title">SIMPATIK — <br>Sistem Kerja Praktik <span>Digital</span>.</h1>
+            <p class="hero-desc">
+                Kelola administrasi Kerja Praktik Anda dengan ekosistem digital terpadu yang dibangun untuk kenyamanan dan transparansi mahasiswa.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{{ route('pengajuan.create') }}" class="btn-hero">
+                    Buat Pengajuan <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="panduan" class="bento-grid">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-800 h1">Layanan Terpadu</h2>
+            <p class="text-muted fs-5">Alur digital yang modern dan efisien</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bento-card text-center">
+                    <div class="icon-wrap mx-auto"><i class="fas fa-file-invoice"></i></div>
+                    <h5 class="fw-bold mb-3">Berkas Paperless</h5>
+                    <p class="text-muted small">Unggah proposal dan berkas syarat administrasi lainnya langsung melalui portal tanpa perlu ke kampus.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bento-card text-center">
+                    <div class="icon-wrap mx-auto"><i class="fas fa-bolt"></i></div>
+                    <h5 class="fw-bold mb-3">Respons Cepat</h5>
+                    <p class="text-muted small">Status verifikasi dokumen oleh administrator dapat dipantau secara langsung melalui notifikasi dashboard.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="bento-card text-center">
+                    <div class="icon-wrap mx-auto"><i class="fas fa-certificate"></i></div>
+                    <h5 class="fw-bold mb-3">Output Digital</h5>
+                    <p class="text-muted small">Surat pengantar dan balasan resmi diterbitkan dalam format PDF yang sah untuk instansi tujuan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bantuan" class="text-center">
+    <div class="container" data-aos="zoom-in">
+        <h3 class="fw-800 mb-4">Butuh Bantuan Teknis?</h3>
+        <p class="text-muted mb-5 mx-auto" style="max-width: 600px;">
+            Jika Anda mengalami kendala saat mengunggah berkas atau akses portal, silakan hubungi tim helpdesk kami.
         </p>
-        <div data-aos="fade-up" data-aos-delay="200">
-            <a href="{{ route('pengajuan.create') }}" class="btn-cta-main">
-                Mulai Pengajuan <i class="fa-solid fa-arrow-right"></i>
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
+            <span class="fw-bold"><i class="fas fa-envelope text-success me-2"></i> helpdesk.simpatik@uinsu.ac.id</span>
+            <span class="fw-bold"><i class="fas fa-building text-success me-2"></i> Kampus IV UINSU</span>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 SIMPATIK UINSU &bull; Made with Academic Integrity.</p>
+    </div>
+</footer>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+        <div class="modal-content shadow-lg">
+            <div class="text-center mb-4">
+                <h4 class="fw-800">Akses Portal</h4>
+                <p class="text-muted small">Pilih pintu masuk sesuai peran Anda</p>
+            </div>
+            <a href="{{ route('mahasiswa.login') }}" class="login-btn-option opt-mhs">
+                <span>Login Mahasiswa</span>
+                <i class="fas fa-user-graduate"></i>
+            </a>
+            <a href="{{ route('login.admin') }}" class="login-btn-option opt-adm">
+                <span>Administrator</span>
+                <i class="fas fa-user-shield"></i>
             </a>
         </div>
     </div>
-</section>
-
-<section id="informasi" class="important-section">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-800">Keterangan Penting</h2>
-            <p class="text-muted">Harap perhatikan langkah-langkah berikut sebelum mengisi formulir</p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="info-card">
-                    <div class="step-num">01</div>
-                    <h5 class="fw-bold">Persiapan Berkas</h5>
-                    <p class="small text-muted mb-0">Pastikan Proposal Kerja Praktik telah disetujui oleh Dosen Pembimbing Akademik dan telah diubah ke format PDF (Maks. 2MB).</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="info-card">
-                    <div class="step-num">02</div>
-                    <h5 class="fw-bold">Validasi Data</h5>
-                    <p class="small text-muted mb-0">Periksa kembali NIM dan Nama Lengkap sesuai di SIA. Kesalahan input data dapat menghambat proses verifikasi oleh Admin.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="info-card">
-                    <div class="step-num">03</div>
-                    <h5 class="fw-bold">Instansi Tujuan</h5>
-                    <p class="small text-muted mb-0">Pastikan Anda telah memiliki informasi kontak dan alamat lengkap instansi yang dituju untuk keperluan penerbitan surat.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="warning-box" data-aos="zoom-in">
-            <h6 class="text-danger fw-bold"><i class="fa-solid fa-circle-exclamation me-2"></i> Perhatian Khusus</h6>
-            <p class="small mb-0 text-dark">Mahasiswa hanya diperbolehkan melakukan satu kali pengajuan aktif. Harap tunggu konfirmasi status dari Admin melalui menu Dashboard atau pantau email Anda secara berkala.</p>
-        </div>
-    </div>
-</section>
-
-<section id="kontak" class="py-5 bg-light">
-    <div class="container py-4 text-center">
-        <h4 class="fw-800 mb-3">Butuh Bantuan Teknis?</h4>
-        <p class="small text-muted mb-4">Hubungi kami jika mengalami kendala sistem atau kesulitan dalam unggah berkas.</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="mailto:admin.simpatik@uinsu.ac.id" class="text-dark fw-bold text-decoration-none small"><i class="fa-solid fa-envelope me-2"></i> admin.simpatik@uinsu.ac.id</a>
-            <span class="text-muted">|</span>
-            <span class="small fw-bold"><i class="fa-solid fa-location-dot me-2"></i> Kampus IV UINSU</span>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container text-center">
-        <p class="small text-muted mb-0">© 2025 Universitas Islam Negeri Sumatera Utara. Built for Academic Integrity.</p>
-    </div>
-</footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
-</script> 
-
-@if(session('success'))
-<div class="container mt-4" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; max-width: 500px;">
-    <div class="alert alert-success border-0 shadow-lg rounded-4 p-3 d-flex align-items-center" role="alert">
-        <i class="fa-solid fa-circle-check fs-4 me-3"></i>
-        <div>
-            <span class="fw-bold d-block">Pengajuan Terkirim!</span>
-            <span class="small">{{ session('success') }}</span>
-        </div>
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
-@endif
-
-<!-- MODAL LOGIN -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 rounded-4 shadow">
-
-            <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold text-success">
-                    Login SIMPATIK
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body text-center px-4 pb-4">
-                <!-- LOGIN MAHASISWA -->
-                <a href="{{ route('mahasiswa.login') }}"
-                   class="btn btn-success w-100 mb-3 py-3 fw-bold">
-                    Login sebagai Mahasiswa
-                </a>
-
-                <!-- LOGIN ADMIN -->
-                <a href="{{ route('login.admin') }}"
-                   class="btn btn-outline-success w-100 py-3 fw-bold">
-                    Login sebagai Admin
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
+    AOS.init({ duration: 1000, once: true });
+    
+    // Smooth Scroll & Navbar Transparency
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('#mainNav');
+        if (window.scrollY > 40) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+</script>
 </body>
+</html>
