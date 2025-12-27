@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
 {
-    public function showLogin() {
-        return view('admin.login');
+    public function showLogin()
+{
+    if (Auth::guard('admin')->check()) {
+        return redirect()->route('admin.dashboard');
     }
+
+    return view('admin.login');
+}
+
 
     public function login(Request $request) {
         $credentials = $request->validate([

@@ -57,9 +57,9 @@ Route::middleware('auth')->group(function () {
         [MahasiswaController::class, 'dashboard']
     )->name('mahasiswa.dashboard');
 
-    Route::get('/mahasiswa/status-pengajuan',
-        [MahasiswaController::class, 'status']
-    )->name('mahasiswa.status');
+    Route::get('/mahasiswa/riwayat',
+        [MahasiswaController::class, 'riwayat']
+    )->name('mahasiswa.riwayat');
 });
 
 
@@ -110,6 +110,11 @@ Route::prefix('admin')->group(function () {
         Route::post('/pengajuan/{id}/update-status',
             [PengajuanController::class, 'updateStatus']
         )->name('admin.pengajuan.update');
+
+        Route::get('/admin/pengajuan/export', 
+        [PengajuanController::class, 'export']
+        )->name('admin.pengajuan.export');
+
 
         // Data Mahasiswa
         Route::get('/mahasiswa', [AdminController::class, 'mahasiswa'])

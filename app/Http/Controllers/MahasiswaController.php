@@ -19,7 +19,7 @@ class MahasiswaController extends Controller
         return view('mahasiswa.dashboard', compact('pengajuan'));
     }
 
-    public function status()
+    public function riwayat()
     {
         $nim = Auth::user()->nim;
 
@@ -32,6 +32,6 @@ class MahasiswaController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('mahasiswa.status', compact('pengajuans'));
+        return view('mahasiswa.riwayat', compact('pengajuans'));
     }
 }

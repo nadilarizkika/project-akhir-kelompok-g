@@ -121,9 +121,9 @@
             <h4 class="fw-800 mb-0">Manajemen Pengajuan</h4>
             <p class="text-muted small mb-0">Verifikasi berkas mahasiswa secara real-time</p>
         </div>
-        <button class="btn btn-success btn-sm rounded-pill px-3 fw-bold shadow-sm">
-            <i class="fa-solid fa-file-export me-1"></i> Ekspor Data
-        </button>
+        <a href="{{ route('admin.pengajuan.export') }}"
+        class="btn btn-success btn-sm rounded-pill px-3 fw-bold shadow-sm">
+        <i class="fa-solid fa-file-export me-1"></i> Ekspor Data </a>
     </header>
 
     <div class="d-flex gap-2 mb-3">

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Pengajuan;
+use App\Exports\PengajuanExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class PengajuanController extends Controller
 {
@@ -101,4 +104,13 @@ public function updateStatus(Request $request, $id)
         'message' => 'Status pengajuan diperbarui'
     ]);
 }
+
+public function export()
+{
+    return Excel::download(
+        new PengajuanExport,
+        'data-pengajuan-kp.xlsx'
+    );
+}
+
 }

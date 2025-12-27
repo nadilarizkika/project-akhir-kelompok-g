@@ -209,7 +209,7 @@
         <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link">
             <i class="fas fa-home"></i> Dashboard
         </a>
-        <a href="{{ route('mahasiswa.status') }}" class="sidebar-link active">
+        <a href="{{ route('mahasiswa.riwayat') }}" class="sidebar-link active">
             <i class="fas fa-clock-rotate-left"></i> Riwayat Pengajuan
         </a>
     </div>

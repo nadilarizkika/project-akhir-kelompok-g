@@ -171,7 +171,7 @@
         <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link active">
             <i class="fas fa-home"></i> Dashboard
         </a>
-        <a href="{{ route('mahasiswa.status') }}" class="sidebar-link">
+        <a href="{{ route('mahasiswa.riwayat') }}" class="sidebar-link">
             <i class="fas fa-paper-plane"></i> Riwayat Pengajuan
         </a>
     </div>
