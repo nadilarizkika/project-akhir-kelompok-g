@@ -194,26 +194,121 @@
         <p class="text-muted small">Selamat datang kembali di sistem administrasi Kerja Praktik.</p>
     </header>
 
-    @if($pengajuan && $pengajuan->status !== 'ditolak')
-        <div class="row g-3">
-            </div>
-    @else
+   {{-- ===================== --}}
+{{-- KONDISI ADA PENGAJUAN --}}
+{{-- ===================== --}}
+@if($pengajuan)
+
+    {{-- ===================== --}}
+    {{-- JIKA DITOLAK --}}
+    {{-- ===================== --}}
+    @if($pengajuan->status === 'ditolak')
+
         <div class="card-bento text-center py-5 border-dashed" style="border: 2px dashed #cbd5e1;">
-            @if($pengajuan && $pengajuan->status === 'ditolak')
-                <div class="alert alert-danger d-inline-flex align-items-center rounded-pill px-3 py-1 mb-3" style="font-size: 0.65rem; font-weight: 700;">
-                    <i class="fas fa-exclamation-circle me-2"></i> Pengajuan ditolak. Silakan ajukan ulang.
-                </div>
-            @endif
-            <div class="mb-3">
-                <img src="https://illustrations.popsy.co/white/data-analysis.svg" style="width: 130px; opacity: 0.8;">
+            <div class="alert alert-danger d-inline-flex align-items-center rounded-pill px-3 py-1 mb-3"
+                 style="font-size: 0.65rem; font-weight: 700;">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Pengajuan ditolak. Silakan ajukan ulang.
             </div>
+
+            <div class="mb-3">
+                <img src="https://illustrations.popsy.co/white/data-analysis.svg"
+                     style="width: 130px; opacity: 0.8;">
+            </div>
+
             <h5 class="fw-800" style="font-size: 1.1rem;">Mulai Pengajuan</h5>
-            <p class="text-muted mb-3 mx-auto" style="max-width: 280px; font-size: 0.75rem;">Daftarkan rencana Kerja Praktik Anda untuk diproses oleh pihak universitas.</p>
-            <a href="{{ route('pengajuan.create') }}" class="btn btn-dark rounded-pill px-4 py-2 fw-bold" style="font-size: 0.8rem;">
+            <p class="text-muted mb-3 mx-auto"
+               style="max-width: 280px; font-size: 0.75rem;">
+                Daftarkan rencana Kerja Praktik Anda untuk diproses oleh pihak universitas.
+            </p>
+
+            <a href="{{ route('pengajuan.create') }}"
+               class="btn btn-dark rounded-pill px-4 py-2 fw-bold"
+               style="font-size: 0.8rem;">
                 Buat Pengajuan Baru <i class="fas fa-paper-plane ms-2"></i>
             </a>
         </div>
+
+    {{-- ===================== --}}
+    {{-- JIKA MENUNGGU / DISETUJUI --}}
+    {{-- ===================== --}}
+    @else
+
+        <div class="row g-3">
+
+            <!-- STATUS -->
+            <div class="col-md-4">
+                <div class="card-bento p-3">
+                    <small class="text-muted">Status Pengajuan</small>
+                    <h5 class="fw-bold mt-1
+                        {{ $pengajuan->status === 'disetujui' ? 'text-success' : 'text-warning' }}">
+                        {{ ucfirst($pengajuan->status) }}
+                    </h5>
+                </div>
+            </div>
+
+            <!-- INSTANSI -->
+            <div class="col-md-4">
+                <div class="card-bento p-3">
+                    <small class="text-muted">Instansi Tujuan</small>
+                    <h6 class="fw-bold mt-1">{{ $pengajuan->instansi_tujuan }}</h6>
+                </div>
+            </div>
+
+            <!-- PERIODE -->
+            <div class="col-md-4">
+                <div class="card-bento p-3">
+                    <small class="text-muted">Periode KP</small>
+                    <h6 class="fw-bold mt-1">
+                        {{ \Carbon\Carbon::parse($pengajuan->tanggal_mulai)->format('d M Y') }}
+                        -
+                        {{ \Carbon\Carbon::parse($pengajuan->tanggal_selesai)->format('d M Y') }}
+                    </h6>
+                </div>
+            </div>
+
+            {{-- SURAT BALASAN (HANYA JIKA DISETUJUI) --}}
+            @if($pengajuan->status === 'disetujui' && $pengajuan->surat_balasan)
+                <div class="col-12 text-center mt-3">
+                    <a href="{{ Storage::url($pengajuan->surat_balasan) }}"
+                       target="_blank"
+                       class="btn btn-success rounded-pill px-4 py-2 fw-bold"
+                       style="font-size: 0.8rem;">
+                        <i class="fas fa-file-pdf me-2"></i> Unduh Surat Balasan
+                    </a>
+                </div>
+            @endif
+
+        </div>
+
     @endif
+
+{{-- ===================== --}}
+{{-- JIKA BELUM ADA PENGAJUAN --}}
+{{-- ===================== --}}
+@else
+
+    <div class="card-bento text-center py-5 border-dashed" style="border: 2px dashed #cbd5e1;">
+        <div class="mb-3">
+            <img src="https://illustrations.popsy.co/white/data-analysis.svg"
+                 style="width: 130px; opacity: 0.8;">
+        </div>
+
+        <h5 class="fw-800" style="font-size: 1.1rem;">Mulai Pengajuan</h5>
+        <p class="text-muted mb-3 mx-auto"
+           style="max-width: 280px; font-size: 0.75rem;">
+            Anda belum memiliki pengajuan Kerja Praktik.
+        </p>
+
+        <a href="{{ route('pengajuan.create') }}"
+           class="btn btn-dark rounded-pill px-4 py-2 fw-bold"
+           style="font-size: 0.8rem;">
+            Ajukan Kerja Praktik <i class="fas fa-paper-plane ms-2"></i>
+        </a>
+    </div>
+
+@endif
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

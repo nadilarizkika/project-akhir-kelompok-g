@@ -54,7 +54,7 @@ class PengajuanController extends Controller
             'status' => 'menunggu', // Status awal default adalah menunggu
         ]);
         
-        return redirect('/')
+        return redirect('/mahasiswa/dashboard')
             ->with('success', 'Pengajuan KP Anda berhasil dikirim dan sedang menunggu verifikasi.');
     }
 
