@@ -3,36 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Pengajuan - SIMPATIK</title>
+    <title>Riwayat Pengajuan — SIMPATIK UINSU</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-emerald: #10b981;
-            --dark-emerald: #064e3b;
-            --accent-pink: #f472b6;
-            --bg-soft: #f8fafc;
+            --deep-forest: #042f2e;
+            --emerald-accent: #10b981;
+            --soft-green: #f0fdf4;
             --sidebar-width: 260px;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-soft);
-            color: #1e293b;
+            background-color: #fcfcfc;
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        /* NAVBAR & SIDEBAR (Tetap Ada) */
+        /* NAVBAR RAMPING */
         .navbar {
-            background: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 15px 30px;
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 10px 30px;
+            z-index: 1050;
         }
 
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--deep-forest) !important;
+        }
+
+        /* SIDEBAR KONSISTEN */
         .sidebar {
             width: var(--sidebar-width);
             background: white;
@@ -40,141 +49,105 @@
             position: fixed;
             top: 0; left: 0;
             padding-top: 80px;
-            border-right: 1px solid rgba(0,0,0,0.05);
+            border-right: 1px solid rgba(0,0,0,0.06);
+            z-index: 1000;
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 14px 25px;
-            color: #64748b;
+            padding: 12px 20px;
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 600;
-            margin: 8px 15px;
+            font-size: 0.9rem;
+            margin: 4px 16px;
             border-radius: 12px;
-            transition: 0.3s;
+            transition: 0.2s ease;
         }
 
+        .sidebar-link i { width: 24px; font-size: 1.1rem; margin-right: 10px; }
+        .sidebar-link:hover { background: var(--soft-green); color: var(--deep-forest); }
         .sidebar-link.active {
-            background: var(--dark-emerald);
+            background: var(--deep-forest);
             color: white;
-            box-shadow: 0 10px 20px -5px rgba(6, 78, 59, 0.2);
+            box-shadow: 0 8px 15px -4px rgba(4, 47, 46, 0.3);
         }
 
+        /* MAIN CONTENT */
         .main-content {
             margin-left: var(--sidebar-width);
             padding: 100px 40px 40px;
-            display: flex;
-            justify-content: center; /* Membuat konten di tengah */
         }
 
-        /* KARTU STATUS COMPACT & MEWAH */
-        .status-card-premium {
-            width: 100%;
-            max-width: 700px; /* Ukuran Lebih Kecil & Kompak */
+        /* TABEL RAPI */
+        .table-container {
             background: white;
-            border-radius: 35px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            display: flex;
-            border: 1px solid rgba(0,0,0,0.02);
-            animation: fadeIn 0.6s ease-out;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sisi Kiri: Mini Brand */
-        .card-side-brand {
-            background: linear-gradient(165deg, var(--dark-emerald), var(--primary-emerald));
-            width: 35%;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .mini-logo-text {
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 0.6rem;
-            color: var(--accent-pink);
-            text-transform: uppercase;
-            margin-right: -0.6rem;
-        }
-
-        /* Sisi Kanan: Info */
-        .card-info-content {
-            width: 65%;
-            padding: 40px;
-        }
-
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .data-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #94a3b8;
-            text-transform: uppercase;
-        }
-
-        .data-value {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--dark-emerald);
-        }
-
-        .badge-status {
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .note-box {
-            background: #fdf2f8;
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 4px solid var(--accent-pink);
-            font-size: 0.8rem;
-            color: #831843;
-        }
-
-        .btn-download {
-            background: var(--dark-emerald);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 15px;
+        .table-simpatik {
+            border-collapse: separate;
+            border-spacing: 0 8px;
             width: 100%;
+        }
+
+        .table-simpatik thead th {
+            color: var(--text-muted);
             font-weight: 700;
-            margin-top: 25px;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            border: none;
+        }
+
+        .table-simpatik tbody tr td {
+            padding: 18px 20px;
+            background: white;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.85rem;
+        }
+
+        .table-simpatik tbody tr td:first-child { border-left: 1px solid #f1f5f9; border-radius: 12px 0 0 12px; }
+        .table-simpatik tbody tr td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 12px 12px 0; }
+
+        /* STATUS PILLS */
+        .status-pill {
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .waiting { background: #fffbeb; color: #b45309; }
+        .approved { background: #f0fdf4; color: #15803d; }
+        .rejected { background: #fef2f2; color: #b91c1c; }
+
+        /* BUTTONS */
+        .btn-unduh {
+            background: var(--deep-forest);
+            color: white;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 8px 18px;
+            border: none;
             transition: 0.3s;
         }
-
-        .btn-download:hover {
-            background: var(--accent-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(244, 114, 182, 0.3);
-        }
+        .btn-unduh:hover { background: var(--emerald-accent); transform: translateY(-2px); color: white; }
 
         @media (max-width: 992px) {
-            .sidebar { display: none; }
+            .sidebar { transform: translateX(-100%); }
             .main-content { margin-left: 0; padding: 100px 20px; }
-            .status-card-premium { flex-direction: column; }
-            .card-side-brand, .card-info-content { width: 100%; }
+            .sidebar.active { transform: translateX(0); }
         }
     </style>
 </head>
@@ -182,76 +155,109 @@
 
 <nav class="navbar fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">SIMPATIK</a>
-        <form action="{{ route('mahasiswa.logout') }}" method="POST">
-            @csrf
-            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Logout</button>
-        </form>
+        <div class="d-flex align-items-center">
+            <button class="btn d-lg-none me-2 p-0" onclick="document.querySelector('.sidebar').classList.toggle('active')">
+                <i class="fas fa-bars-staggered"></i>
+            </button>
+            <a class="navbar-brand" href="#">SIMPATIK<span class="text-success">.</span></a>
+        </div>
+        
+        <div class="d-flex align-items-center">
+            <div class="text-end me-3 d-none d-sm-block">
+                <p class="mb-0 fw-bold small text-dark">{{ Auth::user()->name }}</p>
+                <p class="mb-0 text-muted" style="font-size: 0.6rem;">Mahasiswa UINSU</p>
+            </div>
+            <form action="{{ route('mahasiswa.logout') }}" method="POST" id="logout-form">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold" style="font-size: 0.7rem;">
+                    <i class="fas fa-sign-out-alt me-1"></i> LOGOUT
+                </button>
+            </form>
+        </div>
     </div>
 </nav>
 
-<div class="sidebar">
+<div class="sidebar shadow-sm">
     <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link">
-        <i class="fas fa-th-large"></i> Dashboard
+        <i class="fas fa-home"></i> Dashboard
     </a>
     <a href="{{ route('mahasiswa.status') }}" class="sidebar-link active">
-        <i class="fas fa-file-alt"></i> Status Pengajuan
+        <i class="fas fa-file-invoice"></i> Riwayat Pengajuan
     </a>
 </div>
 
 <main class="main-content">
-    <div class="status-card-premium">
-        @if($pengajuan)
-            <div class="card-side-brand">
-                <div class="mb-3" style="background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-clipboard-check fa-2x"></i>
-                </div>
-                <span class="mini-logo-text">SIMPATIK</span>
-                <p class="small opacity-50 mt-2 text-uppercase fw-bold" style="letter-spacing: 2px; font-size: 0.6rem;">Status Page</p>
-            </div>
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h4 class="fw-800 mb-1" style="color: var(--deep-forest);">Riwayat Pengajuan</h4>
+            <p class="text-muted small mb-0">Pantau seluruh aktivitas administrasi Kerja Praktik Anda.</p>
+        </div>
+        <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-dark btn-sm rounded-pill px-3 fw-bold shadow-sm" style="font-size: 0.75rem;">
+            <i class="fas fa-plus me-1"></i> Pengajuan Baru
+        </a>
+    </div>
 
-            <div class="card-info-content">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="fw-800 mb-0">Detail Status</h5>
-                    @if($pengajuan->status == 'menunggu')
-                        <span class="badge-status bg-warning text-dark">Waiting</span>
-                    @elseif($pengajuan->status == 'disetujui')
-                        <span class="badge-status bg-success text-white">Approved</span>
-                    @else
-                        <span class="badge-status bg-danger text-white">Rejected</span>
-                    @endif
-                </div>
-
-                <div class="data-row">
-                    <span class="data-label">Nama Lengkap</span>
-                    <span class="data-value">{{ $pengajuan->nama_mahasiswa }}</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">NIM</span>
-                    <span class="data-value">{{ $pengajuan->nim }}</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Instansi</span>
-                    <span class="data-value">{{ $pengajuan->instansi_tujuan }}</span>
-                </div>
-
-                @if($pengajuan->catatan_admin)
-                    <div class="note-box">
-                        <i class="fas fa-info-circle me-1"></i> {{ $pengajuan->catatan_admin }}
-                    </div>
-                @endif
-
-                @if($pengajuan->status == 'disetujui' && $pengajuan->surat_balasan)
-                    <a href="{{ asset('storage/'.$pengajuan->surat_balasan) }}" class="btn btn-download shadow-sm text-decoration-none d-block text-center">
-                        <i class="fas fa-download me-2"></i> UNDUH SURAT BALASAN
-                    </a>
-                @endif
-            </div>
-        @else
-            <div class="p-5 text-center w-100">
-                <h6 class="text-muted fw-bold">Belum ada pengajuan.</h6>
-            </div>
-        @endif
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-simpatik align-middle">
+                <thead>
+                    <tr>
+                        <th class="text-center" width="50">No</th>
+                        <th>Tanggal</th>
+                        <th>Instansi Tujuan</th>
+                        <th>Status Verifikasi</th>
+                        <th>Catatan Admin</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($pengajuans as $p)
+                    <tr>
+                        <td class="text-center fw-bold text-muted">{{ $loop->iteration }}</td>
+                        <td>
+                            <div class="fw-bold">{{ $p->created_at->format('d M Y') }}</div>
+                            <div class="text-muted" style="font-size: 0.65rem;">ID: #REQ-{{ $p->id }}</div>
+                        </td>
+                        <td>
+                            <div class="fw-bold text-uppercase" style="color: var(--deep-forest);">{{ $p->instansi_tujuan }}</div>
+                        </td>
+                        <td>
+                            @if($p->status == 'menunggu')
+                                <span class="status-pill waiting"><i class="fas fa-clock fa-spin-hover"></i> Menunggu</span>
+                            @elseif($p->status == 'disetujui')
+                                <span class="status-pill approved"><i class="fas fa-check-circle"></i> Disetujui</span>
+                            @else
+                                <span class="status-pill rejected"><i class="fas fa-times-circle"></i> Ditolak</span>
+                            @endif
+                        </td>
+                        <td>
+                            <span class="text-muted small">{{ $p->catatan_admin ?? '-' }}</span>
+                        </td>
+                        <td class="text-center">
+                            @if($p->status == 'disetujui' && $p->surat_balasan)
+                                <a href="{{ asset('storage/'.$p->surat_balasan) }}" class="btn-unduh text-decoration-none" target="_blank">
+                                    <i class="fas fa-download me-1"></i> Unduh Berkas
+                                </a>
+                            @elseif($p->status == 'ditolak')
+                                <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-sm btn-outline-danger rounded-pill fw-bold" style="font-size: 0.7rem;">
+                                    Perbaiki
+                                </a>
+                            @else
+                                <span class="text-muted fw-bold" style="font-size: 0.7rem;">DIPROSES</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center py-5">
+                            <i class="fas fa-folder-open fa-3x text-muted opacity-25 mb-3"></i>
+                            <p class="fw-bold text-muted">Belum ada riwayat pengajuan.</p>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 

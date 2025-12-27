@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMPATIK — Digital Portal UINSU</title>
+    <title>SIMPATIK — Portal Digital UIN Sumatera Utara</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,292 +12,289 @@
 
     <style>
         :root {
-            --primary: #0f172a;
-            --emerald: #10b981;
-            --emerald-soft: #ecfdf5;
-            --slate: #64748b;
+            --primary-forest: #062c21; 
+            --emerald-soft: #059669;
+            --bg-light: #fcfdfc;
+            --text-slate: #334155;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #ffffff;
-            color: var(--primary);
+            color: var(--text-slate);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* ================= NAVIGATION ================= */
-        .navbar {
-            padding: 25px 0;
-            transition: 0.4s ease;
-        }
+        /* Navbar */
+        .navbar { padding: 15px 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1050; }
+        .navbar-brand { font-weight: 800; color: var(--primary-forest) !important; font-size: 1.4rem; }
+        .navbar-brand span { color: var(--emerald-soft); }
 
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        .btn-portal { 
+            background: var(--primary-forest); 
+            color: white !important; 
+            border-radius: 10px; 
+            padding: 8px 24px; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            border: none; 
+            transition: var(--transition-smooth);
         }
+        .btn-portal:hover { background: #000; transform: translateY(-2px); }
 
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
-            color: var(--primary) !important;
-        }
-
-        .nav-link {
-            font-weight: 600;
-            color: var(--primary) !important;
-            margin: 0 10px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--emerald) !important;
-        }
-
-        .btn-nav-premium {
-            background: var(--primary);
-            color: white !important;
-            border-radius: 14px;
-            padding: 10px 24px !important;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .btn-nav-premium:hover {
-            background: var(--emerald);
-            transform: translateY(-2px);
-        }
-
-        /* ================= HERO SECTION (CLEAN) ================= */
+        /* Hero Section */
         .hero-section {
-            padding: 180px 0 120px;
-            background: radial-gradient(circle at 90% 10%, var(--emerald-soft), transparent 40%);
+            padding: 140px 0 80px; 
             text-align: center;
+            background: radial-gradient(circle at 50% 0%, #f0fdf4 0%, transparent 60%);
+        }
+
+        .hero-badge {
+            background: #eef5f3;
+            color: var(--primary-forest);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid rgba(6, 44, 33, 0.1);
         }
 
         .hero-title {
             font-weight: 800;
-            font-size: clamp(2.5rem, 7vw, 4.8rem);
-            line-height: 1.05;
-            letter-spacing: -3px;
-            margin-bottom: 30px;
-            color: var(--primary);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            color: var(--primary-forest);
+            margin-bottom: 20px;
         }
 
-        .hero-title span { 
-            color: var(--emerald); 
-        }
+        .hero-title span { color: var(--emerald-soft); font-style: italic; }
 
         .hero-desc {
-            font-size: 1.25rem;
-            color: var(--slate);
+            font-size: 1.15rem;
             max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
+            margin: 0 auto 35px;
+            line-height: 1.7;
+            opacity: 0.8;
         }
 
         .btn-hero {
-            background: var(--primary);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 18px;
+            background: var(--primary-forest);
+            color: white !important;
+            padding: 16px 40px;
+            border-radius: 14px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            transition: 0.4s;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 30px rgba(6, 44, 33, 0.15);
         }
 
         .btn-hero:hover {
-            background: var(--emerald);
-            color: white;
+            background: #000;
             transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        /* ================= BENTO GRID SECTION ================= */
-        .bento-grid {
-            padding: 100px 0;
-            background-color: #fcfcfc;
-        }
+        /* Statistik */
+        .stat-box h2 { font-weight: 800; color: var(--primary-forest); font-size: 2.5rem; }
+        .stat-box p { font-weight: 600; font-size: 0.9rem; color: #64748b; }
 
+        /* Bento Cards */
         .bento-card {
             background: white;
-            border-radius: 35px;
-            padding: 45px;
+            border-radius: 28px;
+            padding: 40px;
             height: 100%;
             border: 1px solid #f1f5f9;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: var(--transition-smooth);
         }
 
-        .bento-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--emerald);
-            box-shadow: 0 40px 80px -15px rgba(0,0,0,0.05);
+        .bento-card:hover { 
+            border-color: var(--emerald-soft); 
+            transform: translateY(-10px); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
         }
 
         .icon-wrap {
-            width: 65px; height: 65px;
-            background: var(--emerald-soft);
-            color: var(--emerald);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 30px;
+            width: 55px; height: 55px;
+            background: #f0fdf4;
+            color: var(--primary-forest);
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
         }
 
-        /* ================= HELP SECTION (FOOTER AREA) ================= */
-        #bantuan {
-            padding: 80px 0;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        /* ================= MODAL LOGIN ================= */
-        .modal-content {
-            border-radius: 40px;
-            border: none;
-            padding: 25px;
-        }
-
-        .login-btn-option {
-            padding: 22px;
-            border-radius: 20px;
+        /* Alur Prosedur */
+        .step-number {
+            width: 70px; height: 70px;
+            background: white;
+            color: var(--emerald-soft);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
             font-weight: 800;
-            text-decoration: none;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Modal */
+        .modal-content { border-radius: 30px; border: none; }
+        .btn-login-opt {
+            border-radius: 18px;
+            padding: 20px 25px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            transition: 0.3s;
-            margin-bottom: 15px;
+            align-items: center;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            font-weight: 700;
         }
+        .btn-login-opt:hover { transform: translateX(10px); }
 
-        .opt-mhs { background: var(--primary); color: white; }
-        .opt-adm { background: #f1f5f9; color: var(--primary); }
-
-        .opt-mhs:hover { background: var(--emerald); color: white; transform: scale(1.02); }
-        .opt-adm:hover { background: #e2e8f0; transform: scale(1.02); }
-
-        footer {
-            padding: 50px 0;
-            color: var(--slate);
-            font-size: 0.9rem;
-        }
+        footer { padding: 40px 0; border-top: 1px solid #f1f5f9; background: #fff; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="/">SIMPATIK<span>.</span></a>
-        
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <i class="fas fa-bars-staggered"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#panduan">Panduan</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bantuan">Bantuan</a></li>
-                <li class="nav-item ms-lg-4">
-                    @auth
-                        <a class="btn-nav-premium" href="{{ Auth::guard('admin')->check() ? route('admin.dashboard') : route('mahasiswa.dashboard') }}">Dashboard</a>
-                    @else
-                        <a class="btn-nav-premium" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Portal Masuk</a>
-                    @endauth
-                </li>
-            </ul>
+        <a class="navbar-brand" href="#">SIMPATIK<span>.</span></a>
+        <div class="ms-auto">
+            <button class="btn-portal" data-bs-toggle="modal" data-bs-target="#loginModal">MASUK PORTAL</button>
         </div>
     </div>
 </nav>
 
 <section class="hero-section">
+    <div class="container" data-aos="fade-up">
+        <div class="hero-badge">OFFICIAL DIGITAL PORTAL UINSU</div>
+        <h1 class="hero-title">Satu Platform. Untuk Semua Urusan <span>Kerja Praktik</span>.</h1>
+        <p class="hero-desc">
+            Lupakan antrean fisik dan tumpukan berkas. SIMPATIK hadir mendampingi langkah awal karirmu melalui sistem pengajuan Kerja Praktik yang cepat, transparan, dan terintegrasi.
+        </p>
+        <a href="#prosedur" class="btn-hero">
+            Mulai Pengajuan Sekarang <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<section class="py-5">
     <div class="container">
-        <div data-aos="fade-up">
-            <h1 class="hero-title">SIMPATIK — <br>Sistem Kerja Praktik <span>Digital</span>.</h1>
-            <p class="hero-desc">
-                Kelola administrasi Kerja Praktik Anda dengan ekosistem digital terpadu yang dibangun untuk kenyamanan dan transparansi mahasiswa.
-            </p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="{{ route('pengajuan.create') }}" class="btn-hero">
-                    Buat Pengajuan <i class="fas fa-arrow-right"></i>
-                </a>
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3 stat-box" data-aos="fade-up" data-aos-delay="100">
+                <h2>1.2k+</h2>
+                <p>Mahasiswa Aktif KP</p>
+            </div>
+            <div class="col-6 col-md-3 stat-box" data-aos="fade-up" data-aos-delay="200">
+                <h2>850+</h2>
+                <p>Instansi Mitra</p>
+            </div>
+            <div class="col-6 col-md-3 stat-box" data-aos="fade-up" data-aos-delay="300">
+                <h2>24h</h2>
+                <p>Rerata Verifikasi</p>
+            </div>
+            <div class="col-6 col-md-3 stat-box" data-aos="fade-up" data-aos-delay="400">
+                <h2>100%</h2>
+                <p>Digital Paperless</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="panduan" class="bento-grid">
+<section class="py-5">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="fw-800 h1">Layanan Terpadu</h2>
-            <p class="text-muted fs-5">Alur digital yang modern dan efisien</p>
-        </div>
         <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="bento-card">
+                    <div class="icon-wrap"><i class="fas fa-upload"></i></div>
+                    <h5 class="fw-800 mb-3">Smart Upload</h5>
+                    <p class="text-muted mb-0">Cukup scan KRS dan surat permohonan, lalu unggah. Tanpa kertas, tanpa ribet, ramah lingkungan.</p>
+                </div>
+            </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="bento-card text-center">
-                    <div class="icon-wrap mx-auto"><i class="fas fa-file-invoice"></i></div>
-                    <h5 class="fw-bold mb-3">Berkas Paperless</h5>
-                    <p class="text-muted small">Unggah proposal dan berkas syarat administrasi lainnya langsung melalui portal tanpa perlu ke kampus.</p>
+                <div class="bento-card">
+                    <div class="icon-wrap"><i class="fas fa-bell"></i></div>
+                    <h5 class="fw-800 mb-3">Tracking Real-time</h5>
+                    <p class="text-muted mb-0">Dapatkan update otomatis saat dokumenmu diperiksa oleh Kaprodi hingga surat balasan diterbitkan.</p>
                 </div>
             </div>
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="bento-card text-center">
-                    <div class="icon-wrap mx-auto"><i class="fas fa-bolt"></i></div>
-                    <h5 class="fw-bold mb-3">Respons Cepat</h5>
-                    <p class="text-muted small">Status verifikasi dokumen oleh administrator dapat dipantau secara langsung melalui notifikasi dashboard.</p>
-                </div>
-            </div>
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="bento-card text-center">
-                    <div class="icon-wrap mx-auto"><i class="fas fa-certificate"></i></div>
-                    <h5 class="fw-bold mb-3">Output Digital</h5>
-                    <p class="text-muted small">Surat pengantar dan balasan resmi diterbitkan dalam format PDF yang sah untuk instansi tujuan.</p>
+                <div class="bento-card">
+                    <div class="icon-wrap"><i class="fas fa-file-pdf"></i></div>
+                    <h5 class="fw-800 mb-3">Output Digital Sah</h5>
+                    <p class="text-muted mb-0">Unduh surat pengantar resmi berformat PDF dengan QR-Code keamanan langsung dari dashboard Anda.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="bantuan" class="text-center">
+
+<section id="prosedur" class="py-5" style="background: #f8fafc;">
+    <div class="container py-4">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-800" style="color: var(--primary-forest);">Hanya 3 Langkah Mudah</h2>
+            <p class="text-muted">Prosedur pendaftaran Kerja Praktik mahasiswa UINSU</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4" data-aos="fade-right">
+                <div class="step-number">1</div>
+                <h6 class="fw-800">Lengkapi Data</h6>
+                <p class="small text-muted px-lg-4">Masuk ke portal dan isi detail instansi tempat Anda akan melaksanakan Kerja Praktik.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="step-number">2</div>
+                <h6 class="fw-800">Verifikasi Online</h6>
+                <p class="small text-muted px-lg-4">Tim Administrasi dan Kaprodi akan meninjau kelayakan data serta berkas yang Anda unggah.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-left">
+                <div class="step-number">3</div>
+                <h6 class="fw-800">Cetak Surat</h6>
+                <p class="small text-muted px-lg-4">Setelah disetujui, surat resmi siap diunduh dan dibawa ke instansi tujuan Anda.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-center">
     <div class="container" data-aos="zoom-in">
-        <h3 class="fw-800 mb-4">Butuh Bantuan Teknis?</h3>
-        <p class="text-muted mb-5 mx-auto" style="max-width: 600px;">
-            Jika Anda mengalami kendala saat mengunggah berkas atau akses portal, silakan hubungi tim helpdesk kami.
-        </p>
-        <div class="d-flex justify-content-center gap-4 flex-wrap">
-            <span class="fw-bold"><i class="fas fa-envelope text-success me-2"></i> helpdesk.simpatik@uinsu.ac.id</span>
-            <span class="fw-bold"><i class="fas fa-building text-success me-2"></i> Kampus IV UINSU</span>
+        <h4 class="fw-800 mb-3" style="color: var(--primary-forest);">Butuh Bantuan Teknis?</h4>
+        <p class="text-muted mb-4">Tim Helpdesk SIMPATIK siap melayani kendala navigasi digital Anda.</p>
+        <div class="d-flex justify-content-center gap-4 flex-wrap fw-bold">
+            <span class="small"><i class="fas fa-envelope text-success me-2"></i> helpdesk.simpatik@uinsu.ac.id</span>
+            <span class="small"><i class="fas fa-clock text-success me-2"></i> Sen - Jum | 08.00 - 16.00 WIB</span>
         </div>
     </div>
 </section>
 
-<footer class="text-center">
-    <div class="container">
-        <p class="mb-0">&copy; 2025 SIMPATIK UINSU &bull; Made with Academic Integrity.</p>
+<footer>
+    <div class="container text-center">
+        <p class="small text-muted mb-0">&copy; 2025 SIMPATIK — Universitas Islam Negeri Sumatera Utara.</p>
     </div>
 </footer>
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
-        <div class="modal-content shadow-lg">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+        <div class="modal-content shadow-lg p-4">
             <div class="text-center mb-4">
-                <h4 class="fw-800">Akses Portal</h4>
-                <p class="text-muted small">Pilih pintu masuk sesuai peran Anda</p>
+                <h5 class="fw-800" style="color: var(--primary-forest);">Pilih Jalur Masuk</h5>
+                <p class="small text-muted">Gunakan akun resmi civitas akademika UINSU</p>
             </div>
-            <a href="{{ route('mahasiswa.login') }}" class="login-btn-option opt-mhs">
-                <span>Login Mahasiswa</span>
-                <i class="fas fa-user-graduate"></i>
+            <a href="/mahasiswa/login" class="btn-login-opt mb-3 shadow-sm" style="background: var(--primary-forest); color: white;">
+                <span>Mahasiswa <br><small style="font-weight: 400; opacity: 0.8;">NIM & Password Portal</small></span>
+                <i class="fas fa-user-graduate fa-lg"></i>
             </a>
-            <a href="{{ route('login.admin') }}" class="login-btn-option opt-adm">
-                <span>Administrator</span>
-                <i class="fas fa-user-shield"></i>
+            <a href="/admin/login" class="btn-login-opt shadow-sm" style="background: #f8fafc; color: var(--primary-forest);">
+                <span>Administrator <br><small style="font-weight: 400; opacity: 0.8;">Akses Khusus Staf & Prodi</small></span>
+                <i class="fas fa-user-shield fa-lg"></i>
             </a>
         </div>
     </div>
@@ -307,13 +304,6 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 1000, once: true });
-    
-    // Smooth Scroll & Navbar Transparency
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('#mainNav');
-        if (window.scrollY > 40) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-    });
 </script>
 </body>
 </html>

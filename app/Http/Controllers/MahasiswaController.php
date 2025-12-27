@@ -11,6 +11,7 @@ class MahasiswaController extends Controller
     {
         $nim = Auth::user()->nim;
 
+        // Di dashboard kita tetap tampilkan yang paling baru saja sebagai ringkasan
         $pengajuan = Pengajuan::where('nim', $nim)
             ->latest()
             ->first();
@@ -22,10 +23,15 @@ class MahasiswaController extends Controller
     {
         $nim = Auth::user()->nim;
 
-        $pengajuan = Pengajuan::where('nim', $nim)
-            ->latest()
-            ->first();
+        /**
+         * PERBAIKAN:
+         * Menggunakan ->get() agar mengambil SEMUA riwayat pengajuan.
+         * Menggunakan nama variabel $pengajuans (jamak) agar sesuai dengan @forelse di blade.
+         */
+        $pengajuans = Pengajuan::where('nim', $nim)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        return view('mahasiswa.status', compact('pengajuan'));
+        return view('mahasiswa.status', compact('pengajuans'));
     }
 }
