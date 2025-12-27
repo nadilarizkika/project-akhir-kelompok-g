@@ -17,6 +17,7 @@
             --sidebar-width: 260px;
             --text-main: #1e293b;
             --text-muted: #64748b;
+            --danger-red: #ef4444;
         }
 
         body {
@@ -26,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* NAVBAR RAMPING */
+        /* NAVBAR */
         .navbar {
             background: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(12px);
@@ -41,16 +42,22 @@
             color: var(--deep-forest) !important;
         }
 
-        /* SIDEBAR KONSISTEN */
+        /* SIDEBAR DENGAN TOMBOL KELUAR DI BAWAH */
         .sidebar {
             width: var(--sidebar-width);
             background: white;
             height: 100vh;
             position: fixed;
             top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
             padding-top: 80px;
             border-right: 1px solid rgba(0,0,0,0.06);
             z-index: 1000;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
         }
 
         .sidebar-link {
@@ -74,13 +81,41 @@
             box-shadow: 0 8px 15px -4px rgba(4, 47, 46, 0.3);
         }
 
+        /* Tombol Keluar Style */
+        .sidebar-footer {
+            padding: 20px 16px 30px;
+        }
+
+        .btn-logout-sidebar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background: transparent;
+            color: var(--danger-red);
+            border: 1px solid #fee2e2;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-logout-sidebar:hover {
+            background: #fef2f2;
+            border-color: var(--danger-red);
+        }
+
         /* MAIN CONTENT */
         .main-content {
             margin-left: var(--sidebar-width);
             padding: 100px 40px 40px;
         }
 
-        /* TABEL RAPI */
+        /* TABLE CONTAINER */
         .table-container {
             background: white;
             border-radius: 20px;
@@ -116,7 +151,6 @@
         .table-simpatik tbody tr td:first-child { border-left: 1px solid #f1f5f9; border-radius: 12px 0 0 12px; }
         .table-simpatik tbody tr td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 12px 12px 0; }
 
-        /* STATUS PILLS */
         .status-pill {
             padding: 5px 12px;
             border-radius: 8px;
@@ -131,7 +165,6 @@
         .approved { background: #f0fdf4; color: #15803d; }
         .rejected { background: #fef2f2; color: #b91c1c; }
 
-        /* BUTTONS */
         .btn-unduh {
             background: var(--deep-forest);
             color: white;
@@ -142,7 +175,7 @@
             border: none;
             transition: 0.3s;
         }
-        .btn-unduh:hover { background: var(--emerald-accent); transform: translateY(-2px); color: white; }
+        .btn-unduh:hover { background: var(--emerald-accent); color: white; transform: translateY(-2px); }
 
         @media (max-width: 992px) {
             .sidebar { transform: translateX(-100%); }
@@ -162,34 +195,39 @@
             <a class="navbar-brand" href="#">SIMPATIK<span class="text-success">.</span></a>
         </div>
         
-        <div class="d-flex align-items-center">
-            <div class="text-end me-3 d-none d-sm-block">
+        <div class="d-flex align-items-center d-none d-sm-flex">
+            <div class="text-end me-3">
                 <p class="mb-0 fw-bold small text-dark">{{ Auth::user()->name }}</p>
                 <p class="mb-0 text-muted" style="font-size: 0.6rem;">Mahasiswa UINSU</p>
             </div>
-            <form action="{{ route('mahasiswa.logout') }}" method="POST" id="logout-form">
-                @csrf
-                <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold" style="font-size: 0.7rem;">
-                    <i class="fas fa-sign-out-alt me-1"></i> LOGOUT
-                </button>
-            </form>
         </div>
     </div>
 </nav>
 
 <div class="sidebar shadow-sm">
-    <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link">
-        <i class="fas fa-home"></i> Dashboard
-    </a>
-    <a href="{{ route('mahasiswa.status') }}" class="sidebar-link active">
-        <i class="fas fa-file-invoice"></i> Riwayat Pengajuan
-    </a>
+    <div class="sidebar-content">
+        <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="{{ route('mahasiswa.status') }}" class="sidebar-link active">
+            <i class="fas fa-clock-rotate-left"></i> Riwayat Pengajuan
+        </a>
+    </div>
+
+    <div class="sidebar-footer">
+        <form action="{{ route('mahasiswa.logout') }}" method="POST" id="logout-form">
+            @csrf
+            <button type="submit" class="btn-logout-sidebar">
+                <i class="fas fa-sign-out-alt"></i> KELUAR
+            </button>
+        </form>
+    </div>
 </div>
 
 <main class="main-content">
     <div class="d-flex justify-content-between align-items-end mb-4">
         <div>
-            <h4 class="fw-800 mb-1" style="color: var(--deep-forest);">Riwayat Pengajuan</h4>
+            <h4 class="fw-800 mb-1" style="color: var(--deep-forest); font-size: 1.4rem;">Riwayat Pengajuan</h4>
             <p class="text-muted small mb-0">Pantau seluruh aktivitas administrasi Kerja Praktik Anda.</p>
         </div>
         <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-dark btn-sm rounded-pill px-3 fw-bold shadow-sm" style="font-size: 0.75rem;">
@@ -223,7 +261,7 @@
                         </td>
                         <td>
                             @if($p->status == 'menunggu')
-                                <span class="status-pill waiting"><i class="fas fa-clock fa-spin-hover"></i> Menunggu</span>
+                                <span class="status-pill waiting"><i class="fas fa-clock"></i> Menunggu</span>
                             @elseif($p->status == 'disetujui')
                                 <span class="status-pill approved"><i class="fas fa-check-circle"></i> Disetujui</span>
                             @else
@@ -236,10 +274,10 @@
                         <td class="text-center">
                             @if($p->status == 'disetujui' && $p->surat_balasan)
                                 <a href="{{ asset('storage/'.$p->surat_balasan) }}" class="btn-unduh text-decoration-none" target="_blank">
-                                    <i class="fas fa-download me-1"></i> Unduh Berkas
+                                    <i class="fas fa-download me-1"></i> Unduh
                                 </a>
                             @elseif($p->status == 'ditolak')
-                                <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-sm btn-outline-danger rounded-pill fw-bold" style="font-size: 0.7rem;">
+                                <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-sm btn-outline-danger rounded-pill fw-bold" style="font-size: 0.65rem;">
                                     Perbaiki
                                 </a>
                             @else

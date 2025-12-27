@@ -14,176 +14,121 @@
             --deep-forest: #042f2e;
             --emerald-accent: #10b981;
             --soft-green: #f0fdf4;
-            --sidebar-width: 280px;
+            --sidebar-width: 260px;
             --text-slate: #475569;
+            --danger-red: #ef4444;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8fafc;
             color: var(--deep-forest);
-            overflow-x: hidden;
+            font-size: 0.9rem;
         }
 
-        /* NAVBAR MODERN */
+        /* NAVBAR RAMPING */
         .navbar {
-            background: rgba(255, 255, 255, 0.8) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
             padding: 10px 30px;
             z-index: 1050;
         }
 
+        /* Teks SIMPATIK Bold di Navbar */
         .navbar-brand {
-            font-weight: 800;
-            color: var(--deep-forest) !important;
-            font-size: 1.4rem;
+            font-weight: 800 !important;
+            letter-spacing: -0.5px;
         }
 
-        /* SIDEBAR PREMIUM */
+        /* SIDEBAR */
         .sidebar {
             width: var(--sidebar-width);
             background: white;
             height: 100vh;
             position: fixed;
             top: 0; left: 0;
-            padding-top: 90px;
+            display: flex;
+            flex-direction: column;
             border-right: 1px solid rgba(0,0,0,0.05);
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-top: 20px;
             z-index: 1000;
+        }
+
+        /* Teks SIMPATIK Bold di Sidebar Header */
+        .sidebar-header {
+            padding: 10px 25px 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--deep-forest);
+            letter-spacing: -0.5px;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 14px 22px;
+            padding: 12px 18px;
             color: var(--text-slate);
             text-decoration: none;
             font-weight: 600;
-            margin: 8px 18px;
-            border-radius: 14px;
+            margin: 5px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
 
-        .sidebar-link i {
-            width: 25px;
-            font-size: 1.1rem;
-            margin-right: 10px;
+        .sidebar-link i { width: 22px; font-size: 1rem; margin-right: 8px; }
+        .sidebar-link:hover { background: var(--soft-green); color: var(--deep-forest); }
+        .sidebar-link.active { background: var(--deep-forest); color: white; }
+
+        /* SIDEBAR FOOTER (LOGOUT) */
+        .sidebar-footer {
+            padding: 20px 15px 30px;
         }
 
-        .sidebar-link:hover {
-            background: var(--soft-green);
-            color: var(--deep-forest);
-        }
-
-        .sidebar-link.active {
-            background: var(--deep-forest);
-            color: white;
-            box-shadow: 0 10px 20px -5px rgba(4, 47, 46, 0.3);
-        }
-
-        /* MAIN CONTENT AREA */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            padding: 110px 40px 40px;
-            transition: 0.4s;
-        }
-
-        /* BENTO CARDS */
-        .card-bento {
-            background: white;
-            border: 1px solid rgba(0,0,0,0.04);
-            border-radius: 24px;
-            padding: 25px;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .card-bento:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-            border-color: var(--emerald-accent);
-        }
-
-        .icon-square {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
+        .btn-logout-sidebar {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .label-upper {
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        /* STATUS BADGE */
-        .status-pill {
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .pill-waiting { background: #fffbeb; color: #b45309; border: 1px solid #fef3c7; }
-        .pill-approved { background: #f0fdf4; color: #15803d; border: 1px solid #dcfce7; }
-        .pill-rejected { background: #fef2f2; color: #b91c1c; border: 1px solid #fee2e2; }
-
-        /* DOWNLOAD ANNOUNCEMENT */
-        .download-announcement {
-            border-radius: 24px;
-            padding: 30px;
-            background: var(--deep-forest);
-            color: white;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .download-announcement::after {
-            content: '\f15b';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            font-size: 120px;
-            opacity: 0.05;
-            transform: rotate(-15deg);
-        }
-
-        .btn-premium-download {
-            background: white;
-            color: var(--deep-forest);
-            font-weight: 700;
-            padding: 12px 25px;
+            padding: 10px;
+            background: transparent;
+            color: var(--danger-red);
+            border: 1px solid #fee2e2;
             border-radius: 12px;
-            border: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-logout-sidebar:hover {
+            background: #fef2f2;
+            border-color: var(--danger-red);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 110px 40px 40px;
+        }
+
+        .card-bento {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 20px;
+            padding: 20px;
             transition: 0.3s;
         }
 
-        .btn-premium-download:hover {
-            background: var(--emerald-accent);
-            color: white;
-            transform: scale(1.05);
-        }
-
         @media (max-width: 992px) {
-            .sidebar { transform: translateX(-100%); }
+            .sidebar { transform: translateX(-100%); padding-top: 80px; }
             .main-content { margin-left: 0; padding: 100px 20px; }
             .sidebar.active { transform: translateX(0); }
         }
@@ -194,109 +139,80 @@
 <nav class="navbar fixed-top">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <button class="btn d-lg-none me-2 text-dark" onclick="document.querySelector('.sidebar').classList.toggle('active')">
+            <button class="btn d-lg-none me-2 p-0 border-0" onclick="document.querySelector('.sidebar').classList.toggle('active')">
                 <i class="fas fa-bars-staggered"></i>
             </button>
-            <a class="navbar-brand" href="#">SIMPATIK<span class="text-success">.</span></a>
+            <a class="navbar-brand text-dark" href="#">
+                <strong>SIMPATIK</strong><span class="text-success">.</span>
+            </a>
         </div>
-        <div class="d-flex align-items-center">
-            <div class="text-end me-3 d-none d-md-block">
-                <div class="fw-bold" style="font-size: 0.85rem;">{{ Auth::user()->name }}</div>
-                <div class="text-muted" style="font-size: 0.7rem;">Mahasiswa UINSU</div>
+        
+        <div class="ms-auto d-flex align-items-center">
+            <div class="text-end me-3 d-none d-sm-block">
+                <p class="mb-0 fw-bold text-dark" style="font-size: 0.9rem; line-height: 1.2;">
+                    {{ Auth::user()->name }}
+                </p>
+                <p class="mb-0 text-muted" style="font-size: 0.7rem; font-weight: 500;">
+                    Mahasiswa UINSU
+                </p>
             </div>
-            <form action="{{ route('mahasiswa.logout') }}" method="POST">
-                @csrf
-                <button class="btn btn-dark btn-sm rounded-pill px-3 fw-bold">Logout</button>
-            </form>
+            <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=042f2e&color=fff" 
+                 class="rounded-pill border" width="35" height="35">
         </div>
     </div>
 </nav>
 
 <div class="sidebar shadow-sm">
-    <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link active">
-        <i class="fas fa-home"></i> Dashboard
-    </a>
-    <a href="{{ route('mahasiswa.status') }}" class="sidebar-link">
-        <i class="fas fa-clock-rotate-left"></i> Riwayat Pengajuan
-    </a>
+    <div class="sidebar-header d-none d-lg-block">
+        <strong>SIMPATIK</strong><span class="text-success">.</span>
+    </div>
+
+    <div class="sidebar-content">
+        <a href="{{ route('mahasiswa.dashboard') }}" class="sidebar-link active">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="{{ route('mahasiswa.status') }}" class="sidebar-link">
+            <i class="fas fa-paper-plane"></i> Riwayat Pengajuan
+        </a>
+    </div>
+
+    <div class="sidebar-footer">
+        <form action="{{ route('mahasiswa.logout') }}" method="POST" id="logout-form">
+            @csrf
+            <button type="submit" class="btn-logout-sidebar border-0 bg-transparent w-100">
+                <div class="btn-logout-sidebar">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> KELUAR
+                </div>
+            </button>
+        </form>
+    </div>
 </div>
 
 <main class="main-content">
     <header class="mb-4">
-        <h3 class="fw-800 mb-1">Halo, {{ explode(' ', Auth::user()->name)[0] }}! 👋</h3>
+        <h4 class="fw-800 mb-1" style="font-size: 1.5rem;">Halo, {{ explode(' ', Auth::user()->name)[0] }}! 👋</h4>
         <p class="text-muted small">Selamat datang kembali di sistem administrasi Kerja Praktik.</p>
     </header>
 
-    @if($pengajuan)
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card-bento">
-                <div class="icon-square bg-success-subtle text-success">
-                    <i class="fas fa-shield-check"></i>
-                </div>
-                <span class="label-upper">Status Pengajuan</span>
-                <div class="mt-2">
-                    @if($pengajuan->status == 'menunggu')
-                        <span class="status-pill pill-waiting"><i class="fas fa-spinner fa-spin"></i> Menunggu</span>
-                    @elseif($pengajuan->status == 'disetujui')
-                        <span class="status-pill pill-approved"><i class="fas fa-check-circle"></i> Disetujui</span>
-                    @else
-                        <span class="status-pill pill-rejected"><i class="fas fa-times-circle"></i> Ditolak</span>
-                    @endif
-                </div>
+    @if($pengajuan && $pengajuan->status !== 'ditolak')
+        <div class="row g-3">
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-bento">
-                <div class="icon-square bg-primary-subtle text-primary">
-                    <i class="fas fa-map-location-dot"></i>
-                </div>
-                <span class="label-upper">Tujuan Instansi</span>
-                <h6 class="fw-800 mt-2 mb-0">{{ Str::limit($pengajuan->instansi_tujuan, 30) }}</h6>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-bento">
-                <div class="icon-square bg-warning-subtle text-warning">
-                    <i class="fas fa-calendar-day"></i>
-                </div>
-                <span class="label-upper">Periode KP</span>
-                <h6 class="fw-bold mt-2 mb-0" style="font-size: 0.85rem;">
-                    {{ date('d M', strtotime($pengajuan->tanggal_mulai)) }} - {{ date('d M Y', strtotime($pengajuan->tanggal_selesai)) }}
-                </h6>
-            </div>
-        </div>
-
-        @if($pengajuan->status === 'disetujui' && $pengajuan->surat_balasan)
-        <div class="col-12 mt-2">
-            <div class="download-announcement shadow-lg">
-                <div class="d-flex align-items-center">
-                    <div class="me-4 d-none d-md-block">
-                        <i class="fas fa-file-circle-check fa-3x"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold mb-1">Surat Balasan Telah Tersedia!</h5>
-                        <p class="mb-0 small opacity-75">Silakan unduh dokumen resmi untuk melanjutkan proses Kerja Praktik.</p>
-                    </div>
-                </div>
-                <a href="{{ asset('storage/'.$pengajuan->surat_balasan) }}" class="btn btn-premium-download" target="_blank">
-                    Unduh PDF <i class="fas fa-arrow-down ms-1"></i>
-                </a>
-            </div>
-        </div>
-        @endif
-    </div>
     @else
-    <div class="card-bento text-center py-5 border-dashed" style="border: 2px dashed #e2e8f0;">
-        <img src="https://illustrations.popsy.co/white/data-analysis.svg" alt="ready" style="width: 180px;" class="mb-4">
-        <h5 class="fw-bold">Belum Ada Pengajuan Aktif</h5>
-        <p class="text-muted small mb-4 mx-auto" style="max-width: 350px;">Segera daftarkan rencana Kerja Praktik Anda untuk diproses oleh pihak universitas.</p>
-        <a href="{{ route('pengajuan.create') }}" class="btn btn-dark rounded-pill px-5 py-3 fw-bold">
-            Buat Pengajuan Sekarang <i class="fas fa-paper-plane ms-1"></i>
-        </a>
-    </div>
+        <div class="card-bento text-center py-5 border-dashed" style="border: 2px dashed #cbd5e1;">
+            @if($pengajuan && $pengajuan->status === 'ditolak')
+                <div class="alert alert-danger d-inline-flex align-items-center rounded-pill px-3 py-1 mb-3" style="font-size: 0.65rem; font-weight: 700;">
+                    <i class="fas fa-exclamation-circle me-2"></i> Pengajuan ditolak. Silakan ajukan ulang.
+                </div>
+            @endif
+            <div class="mb-3">
+                <img src="https://illustrations.popsy.co/white/data-analysis.svg" style="width: 130px; opacity: 0.8;">
+            </div>
+            <h5 class="fw-800" style="font-size: 1.1rem;">Mulai Pengajuan</h5>
+            <p class="text-muted mb-3 mx-auto" style="max-width: 280px; font-size: 0.75rem;">Daftarkan rencana Kerja Praktik Anda untuk diproses oleh pihak universitas.</p>
+            <a href="{{ route('pengajuan.create') }}" class="btn btn-dark rounded-pill px-4 py-2 fw-bold" style="font-size: 0.8rem;">
+                Buat Pengajuan Baru <i class="fas fa-paper-plane ms-2"></i>
+            </a>
+        </div>
     @endif
 </main>
 
